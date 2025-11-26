@@ -116,7 +116,7 @@
         }
         
         .nav-links a:hover::after, .nav-links a.active::after {
-             width: 100%;
+            width: 100%;
         }
 
         .hire-btn {
@@ -441,6 +441,12 @@
             padding: 40px;
         }
 
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        
         .contact-icon {
             width: 40px;
             height: 40px;
@@ -458,21 +464,28 @@
             height: 20px;
         }
         
+        .contact-label {
+            color: var(--accent-color-primary);
+            font-size: 0.85rem;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        
         .contact-value {
             font-size: 1rem;
             font-weight: 500;
             word-break: break-all;
             color: var(--text-primary);
         }
+        
         .contact-value a {
-             color: inherit;
-             text-decoration: none;
-             transition: color 0.3s ease;
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s ease;
         }
         .contact-value a:hover {
-             color: var(--accent-color-primary);
+            color: var(--accent-color-primary);
         }
-
 
         .contact-form {
             background: var(--glass-bg);
@@ -481,6 +494,10 @@
             padding: 30px;
         }
 
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
         .form-group input,
         .form-group textarea {
             width: 100%;
@@ -493,6 +510,13 @@
             font-family: inherit;
         }
 
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-color-primary);
+            box-shadow: 0 0 0 1px var(--accent-color-primary);
+        }
+        
         .btn {
             padding: 12px 32px;
             border-radius: 50px;
@@ -619,7 +643,6 @@
                 <li><a href="#home">HOME</a></li>
                 <li><a href="#about">ABOUT</a></li>
                 <li><a href="#portfolio">PORTFOLIO</a></li>
-                <!-- <li><a href="#skills">SKILLS</a></li> -->
                 <li><a href="#contact" class="hire-btn">HIRE ME</a></li>
             </ul>
         </div>
@@ -679,8 +702,7 @@
                 <h2 class="section-title gradient-text">My Work</h2>
                 <div class="section-divider"></div>
             </div>
- <!-- GYM Video -->
-            <div class="portfolio-grid">
+ <div class="portfolio-grid">
                 <div class="portfolio-item">
                     <div class="video-container">
                         <video src="1.1gym.mp4" poster="/placeholder.svg?height=300&width=500"></video>
@@ -710,8 +732,7 @@
                         <p>Shoot by:-ME(Raman) <br> Model:-Sushant.</p>
                     </div>
                 </div>
-<!-- Travel video -->
-                <div class="portfolio-item">
+<div class="portfolio-item">
                     <div class="video-container">
                         <video src="2.1Travel.mp4" poster="/placeholder.svg?height=300&width=500"></video>
                     </div>
@@ -750,29 +771,7 @@
                         <p>Shoot by:-ME(Raman) <br> Model:-Akshit <br>Travel footage.</p>
                     </div>
                 </div>
-<!-- insta reel -->
-                 <div class="portfolio-item">
-                    <div class="video-container">
-                        <video src="sushant yodhaa.mp4" poster="/placeholder.svg?height=300&width=500"></video>
-                    </div>
-                    <div class="portfolio-info">
-                        <h3>Fitness Reels</h3>
-                        <p>Model:-Sushant <br>Type- Reel.</p>
-                    </div>
-                </div>
-
-                 <div class="portfolio-item">
-                    <div class="video-container">
-                        <video src="sushant yodha2.o.mp4" poster="/placeholder.svg?height=300&width=500"></video>
-                    </div>
-                    <div class="portfolio-info">
-                        <h3>Fitness Reels</h3>
-                        <p>Model:-Sushant <br>Type- Reel.</p>
-                    </div>
-                </div>
-
-
-                <div class="portfolio-item">
+<div class="portfolio-item">
                     <div class="video-container">
                         <video src="3.1.1.1.mp4" poster="/placeholder.svg?height=300&width=500"></video>
                     </div>
@@ -813,7 +812,7 @@
                 </div>
 
 
-              <div class="portfolio-item">
+                <div class="portfolio-item">
                     <div class="video-container">
                         <video src="3.2insta.mp4" poster="/placeholder.svg?height=300&width=500"></video>
                     </div>
@@ -844,7 +843,7 @@
                         <p>Shoot by:-ME(Raman)<br>Type-Instagram Reel.</p>
                     </div>
                 </div>
-  
+ 
                 <div class="portfolio-item">
                     <div class="video-container">
                         <video src="3.5insta.mp4" poster="/placeholder.svg?height=300&width=500"></video>
@@ -855,7 +854,7 @@
                     </div>
                 </div>
 
-                 <div class="portfolio-item">
+                <div class="portfolio-item">
                     <div class="video-container">
                         <video src="3.6insta.mp4" poster="/placeholder.svg?height=300&width=500"></video>
                     </div>
@@ -912,16 +911,17 @@
         </div>
     </section>
 
-    
+   
     <section id="contact" class="contact">
+        
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title gradient-text">Let's Create Together</h2>
                 <div class="section-divider"></div>
             </div>
             <div class="contact-content">
+            <center>
                 <div class="contact-info">
-                    <center>
                     <div class="contact-item">
                         <div class="contact-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -930,15 +930,12 @@
                             </svg>
                         </div>
                         <div>
-                            
                             <p class="contact-label">Email</p>
                             <p class="contact-value"><a href="mailto:sohal.kumar1980@gmail.com">sohal.kumar1980@gmail.com</a></p>
                         </div>
                     </div>
                     
-
                     <div class="contact-item">
-                        
                         <div class="contact-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
@@ -950,10 +947,9 @@
                             <p class="contact-value">North India</p>
                         </div>
                     </div>
-                   
                 </div>
-                </center>
-
+            </center>
+                
                 <!-- <form class="contact-form" id="contactForm">
                     <div class="form-group">
                         <input type="text" id="name" placeholder="Your Name" required>
@@ -968,7 +964,9 @@
                 </form> -->
             </div>
         </div>
+        
     </section>
+    
 
     <footer class="footer">
         <p>&copy; 2025 Raman Kumar Sohal. All rights reserved. | Video Editing • Film Editing • Reel Creation</p>
@@ -978,7 +976,6 @@
         <div class="modal-content">
             <span class="close">&times;</span>
             <video id="modalVideo" controls>
-                <source src="" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </div>
@@ -1059,31 +1056,46 @@
 
         // Contact Form Submission
         const contactForm = document.getElementById('contactForm');
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            alert(`Thank you, ${name}! Your inquiry has been sent to ${email}. I will respond shortly.`);
-            contactForm.reset();
-        });
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                alert(`Thank you, ${name}! Your inquiry has been sent to ${email}. I will respond shortly.`);
+                contactForm.reset();
+            });
+        }
 
-        // --- Video Modal Functionality ---
+
+        // --- Video Modal Functionality FIX ---
         const modal = document.getElementById('videoModal');
         const modalVideo = document.getElementById('modalVideo');
         const closeBtn = document.querySelector('.close');
 
         document.querySelectorAll('.portfolio-item').forEach(card => {
-            card.addEventListener('click', function () {
+            card.addEventListener('click', function (e) {
+                // Check if the click event originated from a specific element *inside* the portfolio item (like a manual play/pause button if implemented), and if so, don't open modal
+                if(e.target.closest('video')) {
+                     // If the video itself was clicked, let the browser handle play/pause, but prevent modal pop-up on click/tap
+                    e.preventDefault(); 
+                    return; 
+                }
+                
                 const localVideoElement = this.querySelector('video');
                 
                 if (localVideoElement && localVideoElement.src) {
-                    modalVideo.src = localVideoElement.src;
+                    // FIX: Set the source directly on the modal video element
+                    modalVideo.src = localVideoElement.src; 
                     modal.style.display = 'block';
                     document.body.style.overflow = 'hidden';
+                    
+                    // Load and attempt to play the video
                     modalVideo.load();
-                    modalVideo.play();
+                    modalVideo.play().catch(error => {
+                        console.error("Autoplay failed in modal:", error);
+                    });
                 } else {
-                    alert("Video file missing or link incorrect. Please check the video source path!");
+                    console.error("Video file missing or link incorrect.");
                 }
             });
         });
@@ -1091,6 +1103,7 @@
         const closeModal = () => {
             modal.style.display = 'none';
             modalVideo.pause();
+            // OPTIMIZATION: Clearing the src to stop memory usage and playback when hidden
             modalVideo.removeAttribute('src'); 
             document.body.style.overflow = 'auto';
         };
@@ -1108,6 +1121,38 @@
                 closeModal();
             }
         });
+
+        // --- Hover-to-Play Functionality NEW CODE ---
+        document.querySelectorAll('.portfolio-item').forEach(item => {
+            const videoElement = item.querySelector('video');
+
+            if (videoElement) {
+                // Essential video attributes for seamless hover-play
+                videoElement.setAttribute('loop', '');
+                videoElement.setAttribute('muted', '');
+                videoElement.setAttribute('playsinline', '');
+
+                // Play on hover (mouseenter)
+                item.addEventListener('mouseenter', () => {
+                    // Use promise to handle potential browser restrictions on autoplay
+                    const playPromise = videoElement.play();
+                    if (playPromise !== undefined) {
+                        playPromise.catch(error => {
+                            // Autoplay prevented. Log but allow click/tap to work.
+                            // This usually happens if the muted attribute is missing, but we've added it above.
+                            console.warn("Autoplay was prevented on hover. Ensure videos are correctly muted:", error);
+                        });
+                    }
+                });
+
+                // Pause and reset on mouseleave
+                item.addEventListener('mouseleave', () => {
+                    videoElement.pause();
+                    videoElement.currentTime = 0; // Rewind the video to start
+                });
+            }
+        });
+
     </script>
 </body>
 </html>
