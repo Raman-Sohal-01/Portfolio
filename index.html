@@ -441,12 +441,6 @@
             padding: 40px;
         }
 
-        .contact-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-        }
-        
         .contact-icon {
             width: 40px;
             height: 40px;
@@ -464,20 +458,12 @@
             height: 20px;
         }
         
-        .contact-label {
-            color: var(--accent-color-primary);
-            font-size: 0.85rem;
-            margin-bottom: 5px;
-            font-weight: 600;
-        }
-        
         .contact-value {
             font-size: 1rem;
             font-weight: 500;
             word-break: break-all;
             color: var(--text-primary);
         }
-        
         .contact-value a {
             color: inherit;
             text-decoration: none;
@@ -487,6 +473,7 @@
             color: var(--accent-color-primary);
         }
 
+
         .contact-form {
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
@@ -494,10 +481,6 @@
             padding: 30px;
         }
 
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
         .form-group input,
         .form-group textarea {
             width: 100%;
@@ -510,13 +493,6 @@
             font-family: inherit;
         }
 
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--accent-color-primary);
-            box-shadow: 0 0 0 1px var(--accent-color-primary);
-        }
-        
         .btn {
             padding: 12px 32px;
             border-radius: 50px;
@@ -702,7 +678,7 @@
                 <h2 class="section-title gradient-text">My Work</h2>
                 <div class="section-divider"></div>
             </div>
- <div class="portfolio-grid">
+<div class="portfolio-grid">
                 <div class="portfolio-item">
                     <div class="video-container">
                         <video src="1.1gym.mp4" poster="/placeholder.svg?height=300&width=500"></video>
@@ -798,26 +774,6 @@
                     <div class="portfolio-info">
                         <h3>Sports Reels</h3>
                         <p>Shoot by:-Model <br>Type- Reel.</p>
-                    </div>
-                </div>
-
-                <div class="portfolio-item">
-                    <div class="video-container">
-                        <video src="sushant yodha2.o.mp4" poster="/placeholder.svg?height=300&width=500"></video>
-                    </div>
-                    <div class="portfolio-info">
-                        <h3>Fitness Reels</h3>
-                        <p>Model:-Sushant <br>Type-Fitness Instagram Reel.</p>
-                    </div>
-                </div>
-
-                <div class="portfolio-item">
-                    <div class="video-container">
-                        <video src="sushant yodhaa.mp4" poster="/placeholder.svg?height=300&width=500"></video>
-                    </div>
-                    <div class="portfolio-info">
-                        <h3>Fitness Reels</h3>
-                        <p>Model:-Sushant <br>Type-Fitness Instagram Reel.</p>
                     </div>
                 </div>
 
@@ -931,17 +887,16 @@
         </div>
     </section>
 
-   
+    
     <section id="contact" class="contact">
-        
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title gradient-text">Let's Create Together</h2>
                 <div class="section-divider"></div>
             </div>
             <div class="contact-content">
-            <center>
                 <div class="contact-info">
+                    <center>
                     <div class="contact-item">
                         <div class="contact-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -950,12 +905,14 @@
                             </svg>
                         </div>
                         <div>
+                            
                             <p class="contact-label">Email</p>
                             <p class="contact-value"><a href="mailto:sohal.kumar1980@gmail.com">sohal.kumar1980@gmail.com</a></p>
                         </div>
                     </div>
                     
                     <div class="contact-item">
+                        
                         <div class="contact-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
@@ -967,9 +924,10 @@
                             <p class="contact-value">North India</p>
                         </div>
                     </div>
+                    
                 </div>
-            </center>
-                
+                </center>
+
                 <form class="contact-form" id="contactForm">
                     <div class="form-group">
                         <input type="text" id="name" placeholder="Your Name" required>
@@ -984,9 +942,7 @@
                 </form>
             </div>
         </div>
-        
     </section>
-    
 
     <footer class="footer">
         <p>&copy; 2025 Raman Kumar Sohal. All rights reserved. | Video Editing • Film Editing • Reel Creation</p>
@@ -1076,31 +1032,21 @@
 
         // Contact Form Submission
         const contactForm = document.getElementById('contactForm');
-        if (contactForm) {
-            contactForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const name = document.getElementById('name').value;
-                const email = document.getElementById('email').value;
-                alert(`Thank you, ${name}! Your inquiry has been sent to ${email}. I will respond shortly.`);
-                contactForm.reset();
-            });
-        }
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            alert(`Thank you, ${name}! Your inquiry has been sent to ${email}. I will respond shortly.`);
+            contactForm.reset();
+        });
 
-
-        // --- Video Modal Functionality FIX ---
+        // --- Video Modal Functionality FIX: Video Playback Issue ---
         const modal = document.getElementById('videoModal');
         const modalVideo = document.getElementById('modalVideo');
         const closeBtn = document.querySelector('.close');
 
         document.querySelectorAll('.portfolio-item').forEach(card => {
-            card.addEventListener('click', function (e) {
-                // Check if the click event originated from a specific element *inside* the portfolio item (like a manual play/pause button if implemented), and if so, don't open modal
-                if(e.target.closest('video')) {
-                     // If the video itself was clicked, let the browser handle play/pause, but prevent modal pop-up on click/tap
-                    e.preventDefault(); 
-                    return; 
-                }
-                
+            card.addEventListener('click', function () {
                 const localVideoElement = this.querySelector('video');
                 
                 if (localVideoElement && localVideoElement.src) {
@@ -1109,13 +1055,13 @@
                     modal.style.display = 'block';
                     document.body.style.overflow = 'hidden';
                     
-                    // Load and attempt to play the video
+                    // Load the video and attempt to play
                     modalVideo.load();
                     modalVideo.play().catch(error => {
-                        console.error("Autoplay failed in modal:", error);
+                        console.error("Autoplay failed in modal (user interaction may be required):", error);
                     });
                 } else {
-                    console.error("Video file missing or link incorrect.");
+                    alert("Video file missing or link incorrect. Please check the video source path!");
                 }
             });
         });
@@ -1123,8 +1069,7 @@
         const closeModal = () => {
             modal.style.display = 'none';
             modalVideo.pause();
-            // OPTIMIZATION: Clearing the src to stop memory usage and playback when hidden
-            modalVideo.removeAttribute('src'); 
+            modalVideo.removeAttribute('src'); // Stop streaming/memory usage
             document.body.style.overflow = 'auto';
         };
 
@@ -1147,20 +1092,17 @@
             const videoElement = item.querySelector('video');
 
             if (videoElement) {
-                // Essential video attributes for seamless hover-play
+                // IMPORTANT: Add attributes for smooth, muted autoplay
                 videoElement.setAttribute('loop', '');
                 videoElement.setAttribute('muted', '');
                 videoElement.setAttribute('playsinline', '');
 
                 // Play on hover (mouseenter)
                 item.addEventListener('mouseenter', () => {
-                    // Use promise to handle potential browser restrictions on autoplay
                     const playPromise = videoElement.play();
                     if (playPromise !== undefined) {
                         playPromise.catch(error => {
-                            // Autoplay prevented. Log but allow click/tap to work.
-                            // This usually happens if the muted attribute is missing, but we've added it above.
-                            console.warn("Autoplay was prevented on hover. Ensure videos are correctly muted:", error);
+                            console.warn("Autoplay blocked on hover. Ensure all videos are muted.", error);
                         });
                     }
                 });
@@ -1172,7 +1114,6 @@
                 });
             }
         });
-
     </script>
 </body>
 </html>
