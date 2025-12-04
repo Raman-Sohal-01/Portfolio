@@ -325,7 +325,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            /* F I X: Changed object-fit from 'cover' to 'contain' */
+            /* FIX: Changed object-fit to 'contain' to show the entire video */
             object-fit: contain; 
         }
 
@@ -517,7 +517,7 @@
             align-items: center;
             justify-content: center;
         }
-        /* F I X: Modal video must also use 'contain' */
+        
         .modal-content video {
             width: 100%;
             height: 100%;
@@ -690,6 +690,12 @@
                 <h2 class="section-title gradient-text">My Work</h2>
                 <div class="section-divider"></div>
             </div>
+            
+            <div class="section-header" style="margin-top: 50px;">
+                <h2 class="section-title gradient-text" style="font-size: 2rem;">Video Type: GYM</h2>
+                <div class="section-divider" style="width: 50px;"></div>
+            </div>
+
             <div class="portfolio-grid">
                 <div class="portfolio-item">
                     <div class="video-container">
@@ -739,6 +745,46 @@
                         <p>Shoot by:-**ME(Raman)** | Model:-Sushant.</p>
                     </div>
                 </div>
+                <div class="portfolio-item">
+                    <div class="video-container">
+                        <video src="sushant yodhaa.mp4" poster="/placeholder-reel-4.jpg" preload="metadata"></video>
+                        <div class="play-overlay">
+                            <div class="play-icon">
+                                <svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Fitness Reel</h3>
+                        <p>Model:-Sushant | Type-Normal Instagram Reel.</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="video-container">
+                        <video src="/sushant yodha2.o.mp4" poster="/placeholder-reel-4.jpg" preload="metadata"></video>
+                        <div class="play-overlay">
+                            <div class="play-icon">
+                                <svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Fitness Reel</h3>
+                        <p>Model:-Sushant | Type-Normal Instagram Reel.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section-header" style="margin-top: 80px;">
+                <h2 class="section-title gradient-text" style="font-size: 2rem;">Video Type: Travel</h2>
+                <div class="section-divider" style="width: 50px;"></div>
+            </div>
+
+            <div class="portfolio-grid">
                 <div class="portfolio-item">
                     <div class="video-container">
                         <video src="2.1Travel.mp4" poster="/placeholder-travel-1.jpg" preload="metadata"></video>
@@ -803,6 +849,14 @@
                         <p>Shoot by:-**ME(Raman)** | Model:-Akshit | Travel footage.</p>
                     </div>
                 </div>
+            </div>
+            
+            <div class="section-header" style="margin-top: 80px;">
+                <h2 class="section-title gradient-text" style="font-size: 2rem;">Video Type: Instagram Reels</h2>
+                <div class="section-divider" style="width: 50px;"></div>
+            </div>
+
+            <div class="portfolio-grid">
                 <div class="portfolio-item">
                     <div class="video-container">
                         <video src="3.1.1.1.mp4" poster="/placeholder-reel-1.jpg" preload="metadata"></video>
@@ -851,40 +905,6 @@
                         <p>Shoot by:-Model | Type- Reel.</p>
                     </div>
                 </div>
-                <div class="portfolio-item">
-                    <div class="video-container">
-                        <video src="sushant yodhaa.mp4" poster="/placeholder-reel-4.jpg" preload="metadata"></video>
-                        <div class="play-overlay">
-                            <div class="play-icon">
-                                <svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="portfolio-info">
-                        <h3>Fitness Reel</h3>
-                        <p>Model:-Sushant | Type-Normal Instagram Reel.</p>
-                    </div>
-                </div>
-
-                <div class="portfolio-item">
-                    <div class="video-container">
-                        <video src="/sushant yodha2.o.mp4" poster="/placeholder-reel-4.jpg" preload="metadata"></video>
-                        <div class="play-overlay">
-                            <div class="play-icon">
-                                <svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="portfolio-info">
-                        <h3>Fitness Reel</h3>
-                        <p>Model:-Sushant | Type-Normal Instagram Reel.</p>
-                    </div>
-                </div>
-
                 <div class="portfolio-item">
                     <div class="video-container">
                         <video src="3.2.2.mp4" poster="/placeholder-reel-4.jpg" preload="metadata"></video>
@@ -1085,7 +1105,7 @@
 
                     <div class="contact-btn-container">
                         <a href="mailto:sohal.kumar1980@gmail.com?subject=Enquiry%20from%20Portfolio%20Website" class="btn btn-primary btn-block" style="font-size: 1.1rem; padding: 15px 40px;">
-                            ✉️ EMAIL ME 
+                            ✉️ EMAIL ME
                         </a>
                     </div>
                 </div>
