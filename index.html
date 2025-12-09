@@ -17,7 +17,7 @@
         }
 
         :root {
-            /* Unified Color Palette (Blue/Cyan Focus) */
+            /* Unified Color Palette (Black/Cyan Focus) */
             --primary-bg: #0a0a0a;
             --secondary-bg: #1a1a1a;
             --accent-color-primary: #00d4ff; /* Light Cyan */
@@ -290,10 +290,43 @@
             background: var(--primary-bg);
         }
 
+        /* Filter Buttons Style */
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 40px;
+        }
+
+        .filter-btn {
+            background: var(--glass-bg);
+            color: var(--text-secondary);
+            border: 1px solid var(--glass-border);
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--accent-color-primary);
+            color: var(--primary-bg);
+            border-color: var(--accent-color-primary);
+            box-shadow: 0 4px 15px rgba(0, 212, 255, 0.4);
+        }
+
+        /* Video Grid - OPTIMIZED FOR SIZE */
         .portfolio-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            /* Using 250px min-width to fit 3-4 columns on larger screens */
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px; 
+            transition: opacity 0.5s ease;
         }
 
         .portfolio-item {
@@ -303,6 +336,12 @@
             overflow: hidden;
             transition: var(--transition);
             cursor: pointer;
+            /* Default hidden, shown by JS */
+            display: none;
+        }
+        
+        .portfolio-item.show {
+             display: block;
         }
 
         .portfolio-item:hover {
@@ -313,22 +352,24 @@
 
         .video-container {
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            /* FURTHER REDUCED vertical height to 120% for a much shorter card */
+            padding-bottom: 120%; 
             height: 0;
             overflow: hidden;
             background: #000;
         }
-
+        
         .video-container video {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            /* FIX: Changed object-fit to 'contain' to show the entire video */
+            /* Keep object-fit: contain to show the entire video within the frame */
             object-fit: contain; 
         }
-
+        
+        /* Play Overlay */
         .play-overlay {
             position: absolute;
             top: 0;
@@ -492,7 +533,7 @@
             font-size: 0.9rem;
         }
         
-        /* --- Video Modal --- */
+        /* --- Video Modal (Reel-Style Display) --- */
         .video-modal {
             display: none;
             position: fixed;
@@ -508,14 +549,18 @@
         .modal-content {
             position: relative;
             margin: auto;
+            /* Narrow modal window for a 'Reel' look */
             width: 90%;
-            max-width: 1000px;
+            max-width: 400px; 
             height: 90vh;
             top: 50%;
             transform: translateY(-50%);
             display: flex;
             align-items: center;
             justify-content: center;
+            background: black; /* Solid black background for reel container */
+            border-radius: 15px;
+            overflow: hidden;
         }
         
         .modal-content video {
@@ -526,10 +571,10 @@
 
         .close {
             position: absolute;
-            right: 30px;
-            top: 20px;
+            right: 15px;
+            top: 15px;
             color: var(--text-primary);
-            font-size: 40px;
+            font-size: 30px; /* Smaller close button on reel modal */
             font-weight: bold;
             cursor: pointer;
             z-index: 2001;
@@ -607,7 +652,16 @@
                 margin: 0 auto;
             }
             .skills-list { justify-content: center; } 
-            .portfolio-grid { grid-template-columns: 1fr; }
+            
+            /* Portfolio Grid for Mobile: one column with reduced padding */
+            .portfolio-grid { 
+                grid-template-columns: 1fr; 
+                gap: 20px;
+            }
+            .video-container {
+                /* Using the further reduced ratio for mobile too */
+                padding-bottom: 120%;
+            }
             
             /* Contact Section */
             .contact-info { padding: 30px 20px; }
@@ -615,6 +669,12 @@
             .contact-icon { margin-bottom: 5px; }
             
             .contact-btn-container { width: 100%; }
+
+            /* Adjust reel size for smaller screens */
+            .modal-content {
+                width: 95%;
+                max-width: 90%;
+            }
         }
 
         @media (max-width: 480px) {
@@ -691,13 +751,73 @@
                 <div class="section-divider"></div>
             </div>
             
-            <div class="section-header" style="margin-top: 50px;">
-                <h2 class="section-title gradient-text" style="font-size: 2rem;">Video Type: GYM,Fitness</h2>
-                <div class="section-divider" style="width: 50px;"></div>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">Show All</button>
+                <button class="filter-btn" data-filter="top">⭐ Top Collection</button> <button class="filter-btn" data-filter="gym">GYM / Fitness</button>
+                <button class="filter-btn" data-filter="travel">Travel</button>
+                <button class="filter-btn" data-filter="reels">Instagram Reels</button>
             </div>
+            
+            <div class="portfolio-grid" id="portfolioGrid">
 
-            <div class="portfolio-grid">
-                <div class="portfolio-item">
+
+                <div class="portfolio-item show" data-tag="top Collection top"> 
+                    <div class="video-container">
+                        <video src="blurgvillage--Vineet.mp4" poster="/placeholder-gym-1.jpg" preload="metadata"></video>
+                        <div class="play-overlay">
+                            <div class="play-icon">
+                                <svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Brand Promo Reel</h3>
+                        <p>Shoot by:-**ME(Raman)** | Model:-Vineet</p>
+                    </div>
+                </div>
+
+
+
+                <div class="portfolio-item show" data-tag="top Collection top"> 
+                    <div class="video-container">
+                        <video src="glitch-vineet.mp4" poster="/placeholder-gym-1.jpg" preload="metadata"></video>
+                        <div class="play-overlay">
+                            <div class="play-icon">
+                                <svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Cinematic Reel</h3>
+                        <p>Shoot by:-**ME(Raman)** | Model:-Vineet</p>
+                    </div>
+                </div>
+
+
+                 <div class="portfolio-item show" data-tag="top Collection top"> 
+                    <div class="video-container">
+                        <video src="transformation-vineet.mp4" poster="/placeholder-gym-1.jpg" preload="metadata"></video>
+                        <div class="play-overlay">
+                            <div class="play-icon">
+                                <svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Animation Reel</h3>
+                        <p>Shoot by:-**ME(Raman)** | Model:-Vineet</p>
+                    </div>
+                </div>
+
+
+                
+                <div class="portfolio-item show" data-tag="gym top"> 
                     <div class="video-container">
                         <video src="1.1gym.mp4" poster="/placeholder-gym-1.jpg" preload="metadata"></video>
                         <div class="play-overlay">
@@ -710,10 +830,11 @@
                     </div>
                     <div class="portfolio-info">
                         <h3>High-Impact Gym Reel</h3>
-                        <p>Shoot by:-**ME(Raman)** | Model:-Sushant <br>Dynamic editing for a fitness brand, optimized for social media engagement.</p>
+                        <p>Shoot by:-**ME(Raman)** | Model:-Sushant</p>
                     </div>
                 </div>
-                <div class="portfolio-item">
+
+                <div class="portfolio-item show" data-tag="gym">
                     <div class="video-container">
                         <video src="1.2gym.mp4" poster="/placeholder-gym-2.jpg" preload="metadata"></video>
                         <div class="play-overlay">
@@ -729,7 +850,7 @@
                         <p>Shoot by:-Harsh | Model:-MR.Ashish.</p>
                     </div>
                 </div>
-                <div class="portfolio-item">
+                <div class="portfolio-item show" data-tag="gym top">
                     <div class="video-container">
                         <video src="1.3gym.mp4" poster="/placeholder-gym-3.jpg" preload="metadata"></video>
                         <div class="play-overlay">
@@ -745,7 +866,7 @@
                         <p>Shoot by:-**ME(Raman)** | Model:-Sushant.</p>
                     </div>
                 </div>
-                <div class="portfolio-item">
+                <div class="portfolio-item show" data-tag="gym top">
                     <div class="video-container">
                         <video src="sushant yodhaa.mp4" poster="/placeholder-reel-4.jpg" preload="metadata"></video>
                         <div class="play-overlay">
@@ -757,13 +878,13 @@
                         </div>
                     </div>
                     <div class="portfolio-info">
-                        <h3>Fitness Reel</h3>
+                        <h3>Fitness Reel (Yodhaa 1)</h3>
                         <p>Model:-Sushant | Type-Normal Instagram Reel.</p>
                     </div>
                 </div>
-                <div class="portfolio-item">
+                <div class="portfolio-item show" data-tag="gym">
                     <div class="video-container">
-                        <video src="/sushant yodha2.o.mp4" poster="/placeholder-reel-4.jpg" preload="metadata"></video>
+                        <video src="sushant yodha2.o.mp4" poster="/placeholder-reel-4.jpg" preload="metadata"></video>
                         <div class="play-overlay">
                             <div class="play-icon">
                                 <svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
@@ -773,19 +894,12 @@
                         </div>
                     </div>
                     <div class="portfolio-info">
-                        <h3>Fitness Reel</h3>
+                        <h3>Fitness Reel (Yodhaa 2)</h3>
                         <p>Model:-Sushant | Type-Normal Instagram Reel.</p>
                     </div>
                 </div>
-            </div>
-            
-            <div class="section-header" style="margin-top: 80px;">
-                <h2 class="section-title gradient-text" style="font-size: 2rem;">Video Type: Travel</h2>
-                <div class="section-divider" style="width: 50px;"></div>
-            </div>
-
-            <div class="portfolio-grid">
-                <div class="portfolio-item">
+                
+                <div class="portfolio-item show" data-tag="travel ">
                     <div class="video-container">
                         <video src="2.1Travel.mp4" poster="/placeholder-travel-1.jpg" preload="metadata"></video>
                         <div class="play-overlay">
@@ -798,10 +912,10 @@
                     </div>
                     <div class="portfolio-info">
                         <h3>Narrative Short Edit</h3>
-                        <p>Shoot by:-Harsh | Elevating personal travel footage with professional color grading and sound design.</p>
+                        <p>Shoot by:-Harsh | Travel footage.</p>
                     </div>
                 </div>
-                <div class="portfolio-item">
+                <div class="portfolio-item show" data-tag="travel">
                     <div class="video-container">
                         <video src="2.2Travel.mp4" poster="/placeholder-travel-2.jpg" preload="metadata"></video>
                         <div class="play-overlay">
@@ -817,7 +931,7 @@
                         <p>Model:-Sourav | Travel footage.</p>
                     </div>
                 </div>
-                <div class="portfolio-item">
+                <div class="portfolio-item show" data-tag="travel">
                     <div class="video-container">
                         <video src="2.3Travel.mp4" poster="/placeholder-travel-3.jpg" preload="metadata"></video>
                         <div class="play-overlay">
@@ -830,10 +944,10 @@
                     </div>
                     <div class="portfolio-info">
                         <h3>Travel Video</h3>
-                        <p>Shoot by:-Sourav | Travel footage.</p>
+                        <p>Model:-Sourav | Travel footage.</p>
                     </div>
                 </div>
-                <div class="portfolio-item">
+                <div class="portfolio-item show" data-tag="travel">
                     <div class="video-container">
                         <video src="2.4Travel.mp4" poster="/placeholder-travel-4.jpg" preload="metadata"></video>
                         <div class="play-overlay">
@@ -849,15 +963,8 @@
                         <p>Shoot by:-**ME(Raman)** | Model:-Akshit | Travel footage.</p>
                     </div>
                 </div>
-            </div>
-            
-            <div class="section-header" style="margin-top: 80px;">
-                <h2 class="section-title gradient-text" style="font-size: 2rem;">Video Type: Instagram Reels</h2>
-                <div class="section-divider" style="width: 50px;"></div>
-            </div>
-
-            <div class="portfolio-grid">
-                <div class="portfolio-item">
+                
+                <div class="portfolio-item show" data-tag="reels top"> 
                     <div class="video-container">
                         <video src="3.1.1.1.mp4" poster="/placeholder-reel-1.jpg" preload="metadata"></video>
                         <div class="play-overlay">
@@ -869,11 +976,11 @@
                         </div>
                     </div>
                     <div class="portfolio-info">
-                        <h3>Instagram Reels </h3>
+                        <h3>Instagram Reels (Aarti)</h3>
                         <p>Model:-Aarti | Type- Reel.</p>
                     </div>
                 </div>
-                <div class="portfolio-item">
+                <div class="portfolio-item show" data-tag="reels ">
                     <div class="video-container">
                         <video src="3.1.1insta.mp4" poster="/placeholder-reel-2.jpg" preload="metadata"></video>
                         <div class="play-overlay">
@@ -885,11 +992,11 @@
                         </div>
                     </div>
                     <div class="portfolio-info">
-                        <h3>Instagram Reels</h3>
+                        <h3>Instagram Reels (Chitkara)</h3>
                         <p>Location-Chitkara University | Type- Reel.</p>
                     </div>
                 </div>
-                <div class="portfolio-item">
+                <div class="portfolio-item show" data-tag="reels top">
                     <div class="video-container">
                         <video src="3.1insta.mp4" poster="/placeholder-reel-3.jpg" preload="metadata"></video>
                         <div class="play-overlay">
@@ -905,7 +1012,7 @@
                         <p>Shoot by:-Model | Type- Reel.</p>
                     </div>
                 </div>
-                <div class="portfolio-item">
+                <div class="portfolio-item show" data-tag="reels">
                     <div class="video-container">
                         <video src="3.2.2.mp4" poster="/placeholder-reel-4.jpg" preload="metadata"></video>
                         <div class="play-overlay">
@@ -917,11 +1024,11 @@
                         </div>
                     </div>
                     <div class="portfolio-info">
-                        <h3>Instagram Reels</h3>
+                        <h3>Instagram Reels (Aarti)</h3>
                         <p>Model:-Aarti | Type-Normal Instagram Reel.</p>
                     </div>
                 </div>
-                <div class="portfolio-item">
+                <div class="portfolio-item show" data-tag="reels">
                     <div class="video-container">
                         <video src="3.2insta.mp4" poster="/placeholder-reel-5.jpg" preload="metadata"></video>
                         <div class="play-overlay">
@@ -933,11 +1040,11 @@
                         </div>
                     </div>
                     <div class="portfolio-info">
-                        <h3>Instagram Reels</h3>
+                        <h3>Instagram Reels (Anmol)</h3>
                         <p>Shoot by:-Anmol | Type-Instagram Reel.</p>
                     </div>
                 </div>
-                <div class="portfolio-item">
+                <div class="portfolio-item show" data-tag="reels">
                     <div class="video-container">
                         <video src="3.3insta.mp4" poster="/placeholder-reel-6.jpg" preload="metadata"></video>
                         <div class="play-overlay">
@@ -949,11 +1056,11 @@
                         </div>
                     </div>
                     <div class="portfolio-info">
-                        <h3>Instagram Reels</h3>
-                        <p>Shoot by:-**ME(Raman)** | Location-Chitkara University | Type- Reel.</p>
+                        <h3>Instagram Reels (Chitkara)</h3>
+                        <p>Shoot by:-**ME(Raman)** | Location-Chitkara University</p>
                     </div>
                 </div>
-                <div class="portfolio-item">
+                <div class="portfolio-item show" data-tag="reels top">
                     <div class="video-container">
                         <video src="3.4insta.mp4" poster="/placeholder-reel-7.jpg" preload="metadata"></video>
                         <div class="play-overlay">
@@ -969,7 +1076,7 @@
                         <p>Shoot by:-**ME(Raman)** | Type-Instagram Reel.</p>
                     </div>
                 </div>
-                <div class="portfolio-item">
+                <div class="portfolio-item show" data-tag="reels">
                     <div class="video-container">
                         <video src="3.5insta.mp4" poster="/placeholder-reel-8.jpg" preload="metadata"></video>
                         <div class="play-overlay">
@@ -982,10 +1089,10 @@
                     </div>
                     <div class="portfolio-info">
                         <h3>Instagram Reels</h3>
-                        <p>Shoot by:-**ME(Raman)** | Location-Chitkara University | Type-Instagram Reel.</p>
+                        <p>Shoot by:-**ME(Raman)** | Location-Chitkara University</p>
                     </div>
                 </div>
-                <div class="portfolio-item">
+                <div class="portfolio-item show" data-tag="reels">
                     <div class="video-container">
                         <video src="3.6insta.mp4" poster="/placeholder-reel-9.jpg" preload="metadata"></video>
                         <div class="play-overlay">
@@ -1001,7 +1108,7 @@
                         <p>Model:-Abhisheak | Type-Instagram Reel.</p>
                     </div>
                 </div>
-                <div class="portfolio-item">
+                <div class="portfolio-item show" data-tag="reels">
                     <div class="video-container">
                         <video src="3.7insta.mp4" poster="/placeholder-reel-10.jpg" preload="metadata"></video>
                         <div class="play-overlay">
@@ -1017,7 +1124,7 @@
                         <p>Model:-Abhisheak | Type-Instagram Reel.</p>
                     </div>
                 </div>
-                <div class="portfolio-item">
+                <div class="portfolio-item show" data-tag="reels">
                     <div class="video-container">
                         <video src="3.8insta.mp4" poster="/placeholder-reel-11.jpg" preload="metadata"></video>
                         <div class="play-overlay">
@@ -1030,10 +1137,10 @@
                     </div>
                     <div class="portfolio-info">
                         <h3>Instagram Reels</h3>
-                        <p>Shoot by:-**ME(Raman)** | Location-Chitkara University | Type-Instagram Reel.</p>
+                        <p>Shoot by:-**ME(Raman)** | Location-Chitkara University</p>
                     </div>
                 </div>
-                <div class="portfolio-item">
+                <div class="portfolio-item show" data-tag="reels">
                     <div class="video-container">
                         <video src="3.9insta.mp4" poster="/placeholder-reel-12.jpg" preload="metadata"></video>
                         <div class="play-overlay">
@@ -1049,7 +1156,7 @@
                         <p>Model:-**ME(Raman)** | Type-Instagram Reel.</p>
                     </div>
                 </div>
-                <div class="portfolio-item">
+                <div class="portfolio-item show" data-tag="reels">
                     <div class="video-container">
                         <video src="3.10insta.mp4" poster="/placeholder-reel-13.jpg" preload="metadata"></video>
                         <div class="play-overlay">
@@ -1193,7 +1300,51 @@
         // Initial check for active link
         updateActiveNavLink();
         
-        // --- Video Modal Functionality ---
+        // --- Dynamic Filter Logic (UPDATED for multi-tag filtering) ---
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+
+        const filterVideos = (filterTag) => {
+            portfolioItems.forEach(item => {
+                // Get all tags for the item (e.g., "gym top" or "reels")
+                const tags = item.getAttribute('data-tag').split(' ');
+                
+                let shouldShow = false;
+                
+                if (filterTag === 'all') {
+                    shouldShow = true;
+                } else {
+                    // Check if the specific filterTag exists in the item's tags
+                    shouldShow = tags.includes(filterTag);
+                }
+                
+                // Use setTimeout for transition effect
+                setTimeout(() => {
+                    if (shouldShow) {
+                         item.classList.add('show');
+                    } else {
+                         item.classList.remove('show');
+                    }
+                }, 10); 
+            });
+        };
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Update active button state
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+
+                // Run filter
+                const filterTag = this.getAttribute('data-filter');
+                filterVideos(filterTag);
+            });
+        });
+        
+        // Initial load: show all videos
+        filterVideos('all');
+
+        // --- Video Modal Functionality (Reel-style) ---
         const modal = document.getElementById('videoModal');
         const modalVideo = document.getElementById('modalVideo');
         const closeBtn = document.querySelector('.close');
@@ -1206,8 +1357,11 @@
                 document.body.style.overflow = 'hidden';
                 
                 modalVideo.load();
+                // Attempt to auto-play and mute for the reel experience
+                modalVideo.muted = true; 
                 modalVideo.play().catch(error => {
                     console.error("Autoplay failed in modal (user interaction may be required):", error);
+                    modalVideo.muted = false; // Re-enable sound controls if autoplay fails
                 });
             } else {
                 alert("Video file missing or link incorrect. Please check the video source path!");
@@ -1232,6 +1386,7 @@
         closeBtn.addEventListener('click', closeModal);
 
         modal.addEventListener('click', function (e) {
+            // Close only if clicking directly on the modal background
             if (e.target === modal) {
                 closeModal();
             }
