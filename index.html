@@ -511,9 +511,13 @@
             font-size: 1rem;
         }
 
+        /* 💡 FIX: Moved inline styles to CSS to allow gradient and hover to work */
         .btn-primary {
             background: linear-gradient(135deg, var(--accent-color-primary), var(--accent-color-secondary));
             color: var(--primary-bg);
+            /* Added font and padding back to CSS for the large button */
+            font-size: 1.1rem; 
+            padding: 15px 40px;
         }
 
         .btn-primary:hover {
@@ -753,7 +757,8 @@
             
             <div class="filter-buttons">
                 <button class="filter-btn active" data-filter="all">Show All</button>
-                <button class="filter-btn" data-filter="top">⭐ Top Collection</button> <button class="filter-btn" data-filter="gym">GYM / Fitness</button>
+                <button class="filter-btn" data-filter="top">⭐ Top Collection</button>
+                <button class="filter-btn" data-filter="gym">GYM / Fitness</button>
                 <button class="filter-btn" data-filter="travel">Travel</button>
                 <button class="filter-btn" data-filter="reels">Instagram Reels</button>
             </div>
@@ -761,7 +766,7 @@
             <div class="portfolio-grid" id="portfolioGrid">
 
 
-                <div class="portfolio-item show" data-tag="top Collection top"> 
+                <div class="portfolio-item show" data-tag="top"> 
                     <div class="video-container">
                         <video src="blurgvillage--Vineet.mp4" poster="/placeholder-gym-1.jpg" preload="metadata"></video>
                         <div class="play-overlay">
@@ -780,7 +785,7 @@
 
 
 
-                <div class="portfolio-item show" data-tag="top Collection top"> 
+                <div class="portfolio-item show" data-tag="top"> 
                     <div class="video-container">
                         <video src="glitch-vineet.mp4" poster="/placeholder-gym-1.jpg" preload="metadata"></video>
                         <div class="play-overlay">
@@ -798,7 +803,7 @@
                 </div>
 
 
-                 <div class="portfolio-item show" data-tag="top Collection top"> 
+                   <div class="portfolio-item show" data-tag="top"> 
                     <div class="video-container">
                         <video src="transformation-vineet.mp4" poster="/placeholder-gym-1.jpg" preload="metadata"></video>
                         <div class="play-overlay">
@@ -899,7 +904,7 @@
                     </div>
                 </div>
                 
-                <div class="portfolio-item show" data-tag="travel ">
+                <div class="portfolio-item show" data-tag="travel top">
                     <div class="video-container">
                         <video src="2.1Travel.mp4" poster="/placeholder-travel-1.jpg" preload="metadata"></video>
                         <div class="play-overlay">
@@ -1211,7 +1216,7 @@
                     </div>
 
                     <div class="contact-btn-container">
-                        <a href="mailto:sohal.kumar1980@gmail.com?subject=Enquiry%20from%20Portfolio%20Website" class="btn btn-primary btn-block" style="font-size: 1.1rem; padding: 15px 40px;">
+                        <a href="mailto:sohal.kumar1980@gmail.com?subject=Enquiry%20from%20Portfolio%20Website" class="btn btn-primary btn-block">
                             ✉️ EMAIL ME
                         </a>
                     </div>
@@ -1344,7 +1349,7 @@
         // Initial load: show all videos
         filterVideos('all');
 
-        // --- Video Modal Functionality (Reel-style) ---
+        // --- Video Modal Functionality (Reel-style - Unmuted Fix Included) ---
         const modal = document.getElementById('videoModal');
         const modalVideo = document.getElementById('modalVideo');
         const closeBtn = document.querySelector('.close');
@@ -1357,11 +1362,12 @@
                 document.body.style.overflow = 'hidden';
                 
                 modalVideo.load();
-                // Attempt to auto-play and mute for the reel experience
-                modalVideo.muted = true; 
+                // FIX: Explicitly set muted to FALSE after user click
+                modalVideo.muted = false; 
+                
+                // Attempt to auto-play (should work now since it's a direct user interaction)
                 modalVideo.play().catch(error => {
-                    console.error("Autoplay failed in modal (user interaction may be required):", error);
-                    modalVideo.muted = false; // Re-enable sound controls if autoplay fails
+                    console.error("Autoplay failed even after user interaction:", error);
                 });
             } else {
                 alert("Video file missing or link incorrect. Please check the video source path!");
@@ -1405,7 +1411,8 @@
 
                 if (videoElement) {
                     videoElement.setAttribute('loop', '');
-                    videoElement.setAttribute('muted', '');
+                    // Desktop hover must remain MUTED for Chrome/Safari/Firefox Autoplay policies
+                    videoElement.setAttribute('muted', ''); 
                     videoElement.setAttribute('playsinline', '');
 
                     item.addEventListener('mouseenter', () => {
